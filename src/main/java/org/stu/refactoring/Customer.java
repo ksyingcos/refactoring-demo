@@ -33,13 +33,9 @@ public class Customer {
         String result = "Rental Record for " + getName() + "\n";
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
+            frequentRenterPoints = getFrequentRenterPoints(frequentRenterPoints, each);
 
-            // 添加常客积分
-            frequentRenterPoints++;
-            // 添加租赁超过两天新影片的额外积分
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-                    each.getDaysRented() > 1)
-                frequentRenterPoints++;
+
             // 显示每行租金金额
             result += "\t" + each.getMovie().getTitle() + "\t" +
                     String.valueOf(each.getCharge()) + "\n";
@@ -50,6 +46,16 @@ public class Customer {
         result += "You earned " + String.valueOf(frequentRenterPoints) +
                 " frequent renter points";
         return result;
+    }
+
+    private int getFrequentRenterPoints(int frequentRenterPoints, Rental each) {
+        // 添加常客积分
+        frequentRenterPoints++;
+        // 添加租赁超过两天新影片的额外积分
+        if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
+                each.getDaysRented() > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
     }
 
 }
