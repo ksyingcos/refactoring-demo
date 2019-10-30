@@ -32,9 +32,7 @@ public class Customer {
         Enumeration rentals = this.rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while (rentals.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-            thisAmount = each.getCharge();
 
             // 添加常客积分
             frequentRenterPoints++;
@@ -44,8 +42,8 @@ public class Customer {
                 frequentRenterPoints++;
             // 显示每行租金金额
             result += "\t" + each.getMovie().getTitle() + "\t" +
-                    String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+                    String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
         }
         // 添加页脚，显示租金总额、积分
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
