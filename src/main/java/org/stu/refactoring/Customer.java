@@ -35,7 +35,7 @@ public class Customer {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
 
-            // determine amounts for each line
+            // 算出每行的金额
             switch (each.getMovie().getPriceCode()) {
                 case Movie.REGULAR:
                     thisAmount += 2;
@@ -52,18 +52,18 @@ public class Customer {
                     break;
             }
 
-            // add frequent renter points
+            // 添加常客积分
             frequentRenterPoints++;
-            // add bonus for a two day new release rental
+            // 添加租赁超过两天新影片的额外积分
             if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
                     each.getDaysRented() > 1)
                 frequentRenterPoints++;
-            //show figures for this rental
+            // 显示每行租金金额
             result += "\t" + each.getMovie().getTitle() + "\t" +
                     String.valueOf(thisAmount) + "\n";
             totalAmount += thisAmount;
         }
-        //add footer lines
+        // 添加页脚，显示租金总额、积分
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) +
                 " frequent renter points";
