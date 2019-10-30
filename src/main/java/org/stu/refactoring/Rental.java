@@ -44,4 +44,15 @@ public class Rental {
         }
         return result;
     }
+
+    int getFrequentRenterPoints() {
+        int frequentRenterPoints = 0;
+        // 添加常客积分
+        frequentRenterPoints++;
+        // 添加租赁超过两天新影片的额外积分
+        if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
+                getDaysRented() > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
+    }
 }
