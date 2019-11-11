@@ -63,6 +63,23 @@ public class Customer {
         return result;
     }
 
+    public String htmlStatement() {
+        Enumeration rentals = this.rentals.elements();
+        String result = "<H1>Rental for <EM>" + getName() + "</EM></H1><P>\n";
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+
+            // 显示每行租金金额
+            result += "\t" + each.getMovie().getTitle() + ": " +
+                    String.valueOf(each.getCharge()) + "<BR>\n";
+        }
+        // 添加页脚，显示租金总额、积分
+        result += "<P>You owe <EM> " + String.valueOf(getTotalCharge()) + "</EM><P>\n";
+        result += "On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints()) +
+                "</EM> frequent renter points<P>";
+        return result;
+    }
+
 }
 
 

@@ -60,5 +60,16 @@ public class CustomerTest {
         Assert.assertEquals(expected, statement);
     }
 
-
-} 
+    @Test
+    public void testHtmlStatement() throws Exception {
+        Customer jack = new Customer("jack");
+        Movie classicMovie = new Movie("Titanic", Movie.REGULAR);
+        Rental classicRental = new Rental(classicMovie, 1);
+        Movie newReleaseMovie = new Movie("The Avengers 10", Movie.NEW_RELEASE);
+        Rental newReleaseRental = new Rental(newReleaseMovie, 5);
+        jack.addRental(classicRental);
+        jack.addRental(newReleaseRental);
+        String statement = jack.htmlStatement();
+        System.out.println(statement);
+    }
+}
