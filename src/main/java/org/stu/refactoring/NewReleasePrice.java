@@ -15,4 +15,15 @@ public class NewReleasePrice extends Price {
     double getCharge(int daysRented) {
         return daysRented * 3;
     }
+
+    /**
+     * 租赁超过两天新影片的额外积分
+     *
+     * @param daysRented
+     * @return
+     */
+    @Override
+    int getFrequentRenterPoints(int daysRented) {
+        return daysRented > 1 ? 2 : 1;
+    }
 }

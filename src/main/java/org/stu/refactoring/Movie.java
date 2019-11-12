@@ -49,10 +49,6 @@ public class Movie {
     }
 
     int getFrequentRenterPoints(int daysRented) {
-        // 租赁超过两天新影片的额外积分
-        if ((getPriceCode() == Movie.NEW_RELEASE) &&
-                daysRented > 1)
-            return 2;
-        return 1;
+        return price.getFrequentRenterPoints(daysRented);
     }
 }
